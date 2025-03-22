@@ -45,7 +45,7 @@ def parse_curl_command(curl_command: str) -> Dict[str, Any]:
     
     # 提取cookies
     cookies = {}
-    cookie_matches = re.finditer(r'-b\s*["\']([^"\']*)["\']', curl_command)
+    cookie_matches = re.finditer(r'-b\s*["\']([^\']*)["\']', curl_command)
     for match in cookie_matches:
         cookie_str = match.group(1).strip()
         if cookie_str:
@@ -58,7 +58,7 @@ def parse_curl_command(curl_command: str) -> Dict[str, Any]:
     
     # 检查是否有data或json参数
     data = None
-    data_match = re.search(r'-d\s*["\']([^"\']*)["\']', curl_command)
+    data_match = re.search(r'--data-raw\s*["\']([^\']*)["\']', curl_command)
     if data_match:
         data_str = data_match.group(1)
         try:
